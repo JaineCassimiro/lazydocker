@@ -130,3 +130,79 @@ brews:
 #    #     # things they allow:
 #    #     # https://snapcraft.io/docs/reference/interfaces.
 #    #     plugs: []
+# Este é um ficheiro goreleaser.yaml de exemplo com algumas configurações padrão.
+# Certifique-se de verificar a documentação em http://goreleaser.com
+env:
+  - CGO_ENABLED=0
+  - GOFLAGS=-mod=vendor
+  - GO111MODULE=auto
+
+builds:
+  - id: binary
+    # Configurações para construir os binários principais para diferentes sistemas operativos e arquiteturas.
+    goos:
+      - windows
+      - darwin
+      - linux
+    goarch:
+      - amd64
+      - arm
+      - arm64
+      - 386
+    goarm:
+      - 6
+      - 7
+    ldflags:
+      - -s -w -X main.version={{.Version}} -X main.commit={{.Commit}} -X main.date={{.Date}} -X main.buildSource=binaryRelease
+  - id: snap
+    # Configurações específicas para a construção do pacote Snap para Linux.
+    goos:
+      - linux
+    goarch:
+      - amd64
+      - arm
+      - arm64
+      - 386
+    ldflags:
+      - -s -w -X main.version={{.Version}} -X main.commit={{.Commit}} -X main.date={{.Date}} -X main.buildSource=snap
+
+archives:
+  - builds:
+      - binary
+    # Substituições de nomes para os ficheiros de arquivo gerados.
+    replacements:
+      darwin: Darwin
+      linux: Linux
+      windows: Windows
+      386: x86
+      amd64: x86_64
+    format_overrides:
+      - goos: windows
+        format: zip # Usa formato zip para Windows.
+
+checksum:
+  name_template: "checksums.txt"
+
+snapshot:
+  name_template: "{{ .Tag }}-next"
+
+changelog:
+  sort: asc
+  filters:
+    # Exclui commits que começam com "docs:", "test:", ou "bump" do changelog.
+    exclude:
+      - "^docs:"
+      - "^test:"
+      - "^bump"
+
+brews:
+  # Configuração para publicação no Homebrew.
+  - tap:
+      owner: jesseduffield
+      name: homebrew-lazydocker
+
+    # Homepage da aplicação.
+    homepage: "https://github.com/jesseduffield/lazydocker/"
+
+    # Descrição da aplicação.
+    description: "Uma interface de terminal simples para docker, escrita em Go"
