@@ -324,3 +324,260 @@ If you are running lazydocker in Docker container, it is a know bug, that you ca
 - [docui](https://github.com/skanehira/docui) - Skanehira beat me to the punch on making a docker terminal UI, so definitely check out that repo as well! I think the two repos can live in harmony though: lazydocker is more about managing existing containers/services, and docui is more about creating and configuring them.
 - [Portainer](https://github.com/portainer/portainer) - Portainer tries to solve the same problem but it's accessed via your browser rather than your terminal. It also supports docker swarm.
 - See [Awesome Docker list](https://github.com/veggiemonk/awesome-docker/blob/master/README.md#terminal) for similar tools to work with Docker.
+
+
+
+
+<div align="center">
+<sup>Agradecimentos especiais a:</sup>
+
+
+
+
+
+
+
+<a href="https://www.warp.dev/?utm_source=github&utm_medium=referral&utm_campaign=lazydocker_20231023">
+<div>
+<img src="https://github.com/warpdotdev/brand-assets/blob/main/Github/Sponsor/Warp-Github-LG-02.png?raw=true" width="400" alt="Warp">
+</div>
+<b>Warp, o terminal inteligente</b>
+
+
+
+
+
+<b>Disponível para MacOS e Linux</b>
+
+
+
+
+
+<div>
+<sup>Visite warp.dev para saber mais.</sup>
+</div>
+</a>
+
+
+
+
+
+<hr>
+<a href="https://tuple.app/lazydocker">
+<div>
+<img src="assets/tuple.png" width="400" alt="Tuple">
+</div>
+<b>Tuple, a principal aplicação de partilha de ecrã para programadores em macOS e Windows.</b>
+</a>
+
+
+
+
+
+<hr>
+
+
+
+
+
+<a href="https://www.subble.com">
+<div>
+<img src="assets/subble.webp" width="400" alt="Subble">
+</div>
+<b>Eu (Jesse) co-fundei a Subble para poupar tempo e dinheiro à sua empresa, encontrando licenças SaaS não utilizadas e sobreaprovisionadas. Dê uma vista de olhos!</b>
+</a>
+
+
+
+
+
+<hr>
+</div>
+
+<p align="center">
+<img src="https://user-images.githubusercontent.com/8456633/59972109-8e9c8480-95cc-11e9-8350-38f7f86ba76d.png">
+</p>
+
+Uma interface de terminal simples para docker e docker-compose, escrita em Go com a biblioteca gocui.
+
+Vídeo de Demonstração
+
+Patrocinadores
+<p align="center">
+A manutenção deste projeto é possível graças a todos os <a href="https://github.com/jesseduffield/lazydocker/graphs/contributors">contribuidores</a> e <a href="https://github.com/sponsors/jesseduffield">patrocinadores</a>. Se gostaria de patrocinar este projeto e ter o seu avatar ou logótipo da empresa a aparecer abaixo, <a href="https://github.com/sponsors/jesseduffield">clique aqui</a>. 💙
+</p>
+
+<p align="center">
+<!-- sponsors -->
+<a href="https://github.com/intabulas"><img src="https://github.com/intabulas.png" width="60px" alt="Mark Lussier" /></a>
+<!-- ... (restante dos patrocinadores) ... -->
+</p>
+
+Apresentação Rápida
+Desabafo rápido: Algo não está a funcionar? Talvez um serviço esteja em baixo. docker-compose ps. Sim, é aquele microsserviço que ainda tem bugs. Sem problema, vou reiniciá-lo: docker-compose restart. Ok, agora vamos tentar novamente. Oh, espera, o problema persiste. Hmm. docker-compose ps. Certo, então o serviço deve ter parado imediatamente após arrancar. Eu provavelmente saberia disso se estivesse a ler os logs, mas há muita confusão de outros serviços. Podia obter os logs apenas para aquele serviço com docker compose logs --follow o_meu_servico, mas isso morre sempre que o serviço morre, então teria de executar esse comando cada vez que reinicio o serviço. Alternativamente, poderia executar docker-compose up o_meu_servico e, nessa janela de terminal, se o serviço caísse, eu poderia simplesmente iniciá-lo novamente, mas agora tenho um serviço a ocupar uma janela de terminal mesmo depois de já não me interessar pelos seus logs. Acho que quando quiser recuperar o espaço do terminal, posso fazer ctrl+P,Q, mas... espera, isso não está a funcionar por alguma razão. Devo usar ctrl+C em vez disso? Não me lembro se isso fecha o processo em primeiro plano ou se mata o serviço.
+
+Que dor de cabeça!
+
+Memorizar comandos do docker é difícil. Memorizar atalhos é um pouco menos difícil. Manter o controlo dos seus contentores em várias janelas de terminal é quase impossível. E se tivesse toda a informação de que precisa numa única janela de terminal, com todos os comandos comuns a um simples toque de tecla (e a capacidade de adicionar comandos personalizados também)? O objetivo do Lazydocker é tornar esse sonho realidade.
+
+Requisitos
+
+Instalação
+
+Utilização
+
+Atalhos de Teclado
+
+Funcionalidades Principais
+
+Como Contribuir
+
+Tutorial em Vídeo
+
+Documentação de Configuração
+
+Transmissão na Twitch
+
+FAQ
+
+Requisitos
+Docker >= 1.13 (API >= 1.25)
+
+Docker-Compose >= 1.23.2 (opcional)
+
+Instalação
+Homebrew
+Normalmente, a fórmula lazydocker pode ser encontrada no core do Homebrew, mas sugerimos que adicione o nosso "tap" para obter a versão mais atualizada. Funciona também em Linux.
+
+Tap:
+
+brew install jesseduffield/lazydocker/lazydocker
+
+Core:
+
+brew install lazydocker
+
+Scoop (Windows)
+Pode instalar o lazydocker usando o scoop:
+
+scoop install lazydocker
+
+Chocolatey (Windows)
+Pode instalar o lazydocker usando o Chocolatey:
+
+choco install lazydocker
+
+asdf-vm
+Pode instalar o plugin asdf-lazydocker usando o asdf-vm:
+
+Configuração (Uma vez)
+asdf plugin add lazydocker [https://github.com/comdotlinux/asdf-lazydocker.git](https://github.com/comdotlinux/asdf-lazydocker.git)
+
+Para Instalar / Atualizar
+asdf list all lazydocker
+asdf install lazydocker latest
+asdf global lazydocker latest
+
+Binário (Linux/OSX/Windows)
+Pode descarregar manualmente um binário a partir da página de lançamentos.
+
+Instalação/atualização automática (verifique sempre o que está a passar para o bash):
+
+curl [https://raw.githubusercontent.com/jesseduffield/lazydocker/master/scripts/install_update_linux.sh](https://raw.githubusercontent.com/jesseduffield/lazydocker/master/scripts/install_update_linux.sh) | bash
+
+O script instala o binário no diretório $HOME/.local/bin por defeito, mas pode ser alterado definindo a variável de ambiente DIR.
+
+Go
+Versão de Go Requerida >= 1.19
+
+go install [github.com/jesseduffield/lazydocker@latest](https://github.com/jesseduffield/lazydocker@latest)
+
+Arch Linux AUR
+Pode instalar o lazydocker usando o AUR com o comando:
+
+yay -S lazydocker
+
+Docker
+Execute o contentor
+
+docker run --rm -it -v \
+/var/run/docker.sock:/var/run/docker.sock \
+-v /o_seu_caminho:/.config/jesseduffield/lazydocker \
+lazyteam/lazydocker
+
+Não se esqueça de alterar /o_seu_caminho para um caminho real que criou para guardar a configuração do lazydocker.
+
+Pode também usar este docker-compose.yml.
+
+Pode querer criar um alias, por exemplo:
+
+echo "alias lzd='docker run --rm -it -v /var/run/docker.sock:/var/run/docker.sock -v /o_seu_caminho/config:/.config/jesseduffield/lazydocker lazyteam/lazydocker'" >> ~/.zshrc
+
+Para desenvolvimento, pode construir a imagem usando:
+
+git clone [https://github.com/jesseduffield/lazydocker.git](https://github.com/jesseduffield/lazydocker.git)
+cd lazydocker
+docker build -t lazyteam/lazydocker \
+    --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` \
+    --build-arg VCS_REF=`git rev-parse --short HEAD` \
+    --build-arg VERSION=`git describe --abbrev=0 --tag` \
+    .
+
+Utilização
+Execute lazydocker no seu terminal. Eu pessoalmente uso isto com frequência, por isso criei um alias:
+
+echo "alias lzd='lazydocker'" >> ~/.zshrc
+
+(pode substituir .zshrc pelo ficheiro rc que estiver a usar)
+
+Tutorial básico em vídeo aqui.
+
+Lista de atalhos de teclado aqui.
+
+Funcionalidades Principais
+Tudo está a um toque de tecla (ou a um clique! Suporte para rato FTW):
+
+ver o estado do seu ambiente docker ou docker-compose num relance
+
+ver logs para um contentor/serviço
+
+ver gráficos ascii das métricas dos seus contentores para não só se sentir, mas também parecer um programador
+
+personalizar esses gráficos para medir quase qualquer métrica que desejar
+
+ligar-se a um contentor/serviço
+
+reiniciar/remover/reconstruir contentores/serviços
+
+ver as camadas ancestrais de uma determinada imagem
+
+limpar contentores, imagens ou volumes que estão a ocupar espaço em disco
+
+Como Contribuir
+Ainda há muito trabalho a fazer! Por favor, consulte o guia de contribuição.
+Para discussão entre contribuidores sobre assuntos não adequados para o repositório, junte-se ao canal do Discord:
+
+<a href="https://discord.gg/ehwFt2t4wt"><img src='/docs/resources/discord.png' width='75'></a>
+
+Doar
+Se gostaria de apoiar o desenvolvimento do lazydocker, considere patrocinar-me.
+
+FAQ
+Como edito a minha configuração?
+Abrindo o lazydocker, clicando no painel 'project' no canto superior esquerdo e pressionando 'o' (ou 'e' se o seu editor for o vim). Veja a Documentação de Configuração.
+
+Como faço para que o texto quebre linha no painel principal?
+No futuro, quero que isto seja o padrão, mas por agora existem alguns problemas de CPU que surgem com a quebra de linha. Se quiser ativar a quebra de linha, use gui.wrapMainPanel: true.
+
+Como seleciono texto?
+Como suportamos eventos de rato, terá de manter a tecla option pressionada enquanto arrasta o rato para indicar que está a tentar selecionar texto em vez de clicar em algo. Alternativamente, pode desativar os eventos de rato através da configuração gui.ignoreMouseEvents.
+
+Porque não consigo ver os logs do meu contentor?
+Por defeito, apenas mostramos os logs da última hora, para não sobrecarregar a máquina. Pode ser por isso que não vê os logs quando inicia o lazydocker. Isto pode ser alterado na configuração em commandTemplates.
+
+Alternativas
+docui
+
+Portainer
+
+Veja a lista Awesome Docker para ferramentas semelhantes.
