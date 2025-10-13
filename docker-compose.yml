@@ -14,3 +14,27 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ./config:/.config/jesseduffield/lazydocker
+
+
+
+version: '3'
+services:
+  lazydocker:
+    # Constrói a imagem a partir do repositório oficial do lazydocker.
+    build:
+      context: https://github.com/jesseduffield/lazydocker.git
+      args:
+        BASE_IMAGE_BUILDER: golang
+        GOARCH: amd64
+        GOARM:
+    image: lazyteam/lazydocker
+    container_name: lazydocker
+    stdin_open: true # Mantém o STDIN aberto para interatividade.
+    tty: true # Aloca um pseudo-TTY.
+    volumes:
+      # Monta o socket do Docker do anfitrião para que o lazydocker dentro do contentor possa gerir o Docker.
+      - /var/run/docker.sock:/var/run/docker.sock
+      # Monta um diretório local para persistir as configurações do lazydocker.
+      - ./config:/.config/jesseduffield/lazydocker
+
+
