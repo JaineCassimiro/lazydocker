@@ -72,3 +72,64 @@ This Code of Conduct is adapted from the [Contributor Covenant][homepage], versi
 available at https://www.contributor-covenant.org/version/1/4/code-of-conduct.html
 
 [homepage]: https://www.contributor-covenant.org
+
+
+Como Contribuir
+Quer aprender Go? Este é o projeto para si!
+
+Ao contribuir para este repositório, por favor, discuta primeiro a alteração que deseja fazer através de uma "issue", e-mail ou qualquer outro método com os proprietários deste repositório antes de fazer uma alteração.
+
+Todas as alterações de código acontecem através de Pull Requests
+Os Pull Requests são a melhor forma de propor alterações à base de código. Acolhemos ativamente os seus pull requests:
+
+Faça um "fork" do repositório e crie o seu "branch" a partir do master.
+
+Se adicionou código que deve ser testado, adicione testes.
+
+Se adicionou código que necessita de documentação, atualize a documentação.
+
+Certifique-se de que o seu código segue as diretrizes do effective go tanto quanto possível.
+
+Não se esqueça de testar as suas modificações.
+
+Escreva uma boa mensagem de commit.
+
+Envie esse pull request!
+
+"Vendoring" (Gestão de Dependências)
+Utilizamos um diretório vendor para armazenar todos os ficheiros de dependências. Um diretório vendor garante uma única fonte de verdade, para que fique claro em cada PR que alterações estão a ser feitas, além de permitir testar rapidamente ideias em vários pacotes dependentes ou pesquisar os ficheiros nos seus pacotes dependentes através do seu editor.
+
+No entanto, isto atualmente tem um custo. Migrei relutantemente do dep para os módulos Go, e os módulos Go ainda estão a trabalhar no suporte para diretórios vendor:
+https://github.com/golang/go/issues/27227
+https://github.com/golang/go/issues/30240
+
+Isto significa que há um pequeno esforço extra para trabalhar com a base de código. Se precisar de fazer alterações nos pacotes dependentes, pode seguir uma de duas abordagens:
+
+Abordagem 1
+a) Defina export GOFLAGS=-mod=vendor no seu ficheiro ~/.bashrc.
+b) Use go run main.go para executar o lazydocker.
+c) Se precisar de atualizar uma dependência (ex: jesseduffield/gocui), use:
+
+GOFLAGS= go get -u [github.com/jesseduffield/gocui@master](https://github.com/jesseduffield/gocui@master)
+go mod tidy
+go mod vendor
+
+Abordagem 2
+a) Não se preocupe com o seu ficheiro ~/.bashrc.
+b) Use go run -mod=vendor main.go para executar o lazydocker.
+c) Se precisar de atualizar uma dependência, use:
+
+go get -u [github.com/jesseduffield/gocui@master](https://github.com/jesseduffield/gocui@master)
+go mod tidy
+go mod vendor
+
+Esperemos que isto seja muito mais simplificado no futuro :)
+
+Código de Conduta
+Por favor, note que ao participar neste projeto, concorda em cumprir o código de conduta.
+
+Qualquer contribuição que fizer estará sob a Licença de Software MIT
+Em suma, quando submete alterações de código, as suas submissões são entendidas como estando sob a mesma Licença MIT que cobre o projeto. Sinta-se à vontade para contactar os mantenedores se isso for uma preocupação.
+
+Reportar bugs usando as issues do Github
+Utilizamos as issues do GitHub para rastrear bugs públicos. Reporte um bug abrindo uma nova issue; é muito fácil!
